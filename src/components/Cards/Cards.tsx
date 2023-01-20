@@ -1,12 +1,25 @@
+import { useState } from 'react';
 import CardsWrapper from './CardsWrapper.css';
 
-function Cards() {
+interface Props {
+  name: string;
+  image: string;
+}
+
+function Cards({ name, image }: Props) {
+  const [active, setActive] = useState(false);
+
+  const handleClick = () => {
+    setActive((active) => !active);
+  };
+
   return (
     <CardsWrapper>
-      <picture>
-        <img src='' alt='' width={100} />
-      </picture>
-      <h3>Name</h3>
+      <button onClick={handleClick} className={active ? 'show' : 'hide'}>
+        <picture>
+          <img src={`${image}`} alt={`${name}`} />
+        </picture>
+      </button>
     </CardsWrapper>
   );
 }
